@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "carbon-io": "0.7.x"
+    "carbon-io": "^0.7.0"
   },
   "devDependencies": {
     "aglio": "^2.3.0"
