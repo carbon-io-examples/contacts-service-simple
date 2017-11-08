@@ -1,5 +1,7 @@
 # Basic Contact Service
 
+[![Build Status](https://img.shields.io/travis/carbon-io-examples/contacts-service-simple/carbon-0.6.svg?style=flat-square)](https://travis-ci.org/carbon-io-examples/contacts-service-simple)
+
 This example illustrates the use of Carbon.io to implement a public API for managing contacts. 
 
 ## Installing the service
