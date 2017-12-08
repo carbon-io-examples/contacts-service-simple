@@ -28,20 +28,20 @@ This example is Part 1 in a four-part series. You can find the subsequent series
 
 ## Introduction
 
-We will create a RESTful API that allows for basic CRUD operations on a contact list. The API will support two [Endpoints](https://docs.carbon.io/en/latest/packages/carbond/docs/guide/endpoints.html) (or URIs) and some HTTP [Operations](https://docs.carbon.io/en/latest/packages/carbond/docs/guide/operations.html):
+We will create a RESTful API that allows for basic CRUD operations on a contact list. The API will support two [Endpoints](https://docs.carbon.io/en/latest/packages/carbond/docs/guide/endpoints.html) (or URIs) with the following HTTP [Operations](https://docs.carbon.io/en/latest/packages/carbond/docs/guide/operations.html):
 
-Endpoint 1: /contacts
+**/contacts**
 * GET - get all contacts
 * POST - create a new contact
 
-Sub-endpoint 1: /contacts/:contact
+**/contacts/:contact**
 * GET - get one contact by ID
 * PUT - update a contact by ID
 * DELETE - delete a contact by ID
 
 ## Prerequisites
 
-You will need to install the following software before starting this tutorial:
+Install the following software locally:
 
 * [Node.js](https://nodejs.org/en/download/)
 * [MongoDB](https://www.mongodb.com/download-center#community)
@@ -141,13 +141,11 @@ There's quite a bit of code above, so we'll break it down by section.
 
 Carbon.io is built on several core infrastructure components, three of which are introduced in the preamble. We will cover each component briefly and talk more about each component when it's relevant. If you'd like an in-depth exploration on these components, you can visit the Carbon.io documentation on [Application structure](https://docs.carbon.io/en/latest/packages/carbond/docs/guide/application-structure.html).
 
-[Fibers](https://docs.carbon.io/en/latest/packages/carbon-core/docs/packages/fibers/docs/guide/index.html) - "__" function - a wrapper for the [Node Fibers](https://github.com/laverdet/node-fibers) library, which manages the complexity of Node.js concurrency under the hood. Fibers allow you to write code that is logically synchronous.
+[Fibers](https://docs.carbon.io/en/latest/packages/carbon-core/docs/packages/fibers/docs/guide/index.html) - "__" function - a wrapper for the [Node Fibers](https://github.com/laverdet/node-fibers) library, which adds co-routine support to Node.js. Fibers allow you to write code that is logically synchronous.
 
 [Bond](https://docs.carbon.io/en/latest/packages/carbon-core/docs/packages/bond/docs/index.html) - "_o" function -  the universal name resolver component for Carbon.io. Bond allows for objects to be resolved from names in a variety of namespaces.
 
-[Atom](https://docs.carbon.io/en/latest/packages/carbon-core/docs/packages/atom/docs/index.html) - "o" function - the universal object factory, used to instantiate objects and to create components. Components are simply objects bound in the Node.js module namespace via module.exports.
-
-Following the preamble, we define the different properties of the Contacts Service. Notice that Carbon.io favors a declarative programming style that allows users to specify "what, not how".
+[Atom](https://docs.carbon.io/en/latest/packages/carbon-core/docs/packages/atom/docs/index.html) - "o" function - the universal object factory. Atom makes it easy to declaratively build pluggable components that make up your API.
 
 ### Environment variables
 
@@ -159,15 +157,15 @@ The port number that the Contacts Service listens on.
 
 ### Database URI
 
-The database URI to connect to at Service startup. We use the Bond operator to resolve the "DB_URI" variable value.
+The database URI to connect to at Service startup. We use the Bond operator to resolve the `DB_URI` variable value.
 
 ### Endpoints
 
-The list of Endpoints that make up the Service. Both the "/contacts" Endpoint and "/contacts/:contact" sub-endpoint are defined in the `lib/ContactsEndpoint.js` file that we create in the next step. We use the Bond operator to resolve the ContactsEndpoint file location.
+The list of Endpoints that make up the Service. Both the `/contacts` Endpoint and `/contacts/:contact` sub-endpoint are defined in the `lib/ContactsEndpoint.js` file that we create in the next step. We use the Bond operator to resolve the ContactsEndpoint file location.
 
 ## Define the Contacts Endpoint
 
-With our Service set up, we'll now define the "/contacts" Endpoint and "/contacts/:contact" sub-endpoint. Each Endpoint can support any of the following HTTP operations: GET, POST, PUT, PATCH, DELETE, HEAD, and OPTIONS.
+With our Service set up, we'll now define the `/contacts` Endpoint and `/contacts/:contact` sub-endpoint. Each Endpoint can support any of the following HTTP operations: GET, POST, PUT, PATCH, DELETE, HEAD, and OPTIONS.
 
 Create the `lib/ContactsEndpoint.js` file and copy the code:
 
@@ -177,7 +175,6 @@ curl https://raw.githubusercontent.com/carbon-io-examples/contact-service-simple
 
 ```javascript
 const carbon = require('carbon-io')
-const HttpErrors = carbon.HttpErrors
 const _o  = carbon.bond._o(module)
 const o   = carbon.atom.o(module)
 
@@ -288,7 +285,7 @@ module.exports = o({
   saveObjectConfig: {
     // We do not want clients to be able to create new contacts this way. We want to be in control
     // of the _id values.
-    supportsInsert: false
+    supportsUpsert: false
   }
 
 })
@@ -298,14 +295,14 @@ module.exports = o({
 
 To help us implement the Endpoints we will use the Carbon.io [MongoDBCollection](https://docs.carbon.io/en/master/packages/carbond/docs/guide/collections.html#mongodbcollection) class, which extends the Collection class. Both classes provide a high-level abstraction for defining Endpoints that behave like a RESTful collection of resources. When you define a Collection you may define the following methods:
 
-* insert(obj, reqCtx)
-* find(query, reqCtx)
-* update(query, update, reqCtx)
-* remove(query, reqCtx)
-* saveObject(obj, reqCtx)
-* findObject(id, reqCtx)
-* updateObject(id, update, reqCtx)
-* removeObject(id, reqCtx)
+* `insert(obj, reqCtx)`
+* `find(query, reqCtx)`
+* `update(query, update, reqCtx)`
+* `remove(query, reqCtx)`
+* `saveObject(obj, reqCtx)`
+* `findObject(id, reqCtx)`
+* `updateObject(id, update, reqCtx)`
+* `removeObject(id, reqCtx)`
 
 Which results in the following tree of Endpoints and Operations:
 
@@ -322,14 +319,14 @@ Which results in the following tree of Endpoints and Operations:
 
 ### Enabled operations
 
-Recall that our Contacts Service will support the following Operations:
+Recall that our Contacts Service will support the following Endpoints with the following Operations:
 
-Endpoint 1: /contacts
+**/contacts**
 
 * GET - get all contacts
 * POST - create a new contact
 
-Sub-endpoint 1: /contacts/:contact
+**/contacts/:contact**
 
 * GET - get one contact by ID
 * PUT - update a contact by ID
@@ -337,15 +334,15 @@ Sub-endpoint 1: /contacts/:contact
 
 So, we will specify the MongoDBCollection operations we want to support under the "enabled" property by flagging them as `true`:
 
-* find
-* insertObject
-* findObject
-* saveObject
-* removeObject
+* `find`
+* `insertObject`
+* `findObject`
+* `saveObject`
+* `removeObject`
 
 ### Schema and id
 
-Collections also allow you to define a schema. This is not a database schema, but rather the schema that the Service will validate against whenever data is sent to or from the Endpoint. The default Carbon.io schema for resources requires an "_id" field, which is also the default id field for MongoDB. Instead of generating our own ids, we'll use the built-in Carbon.io [ObjectIdGenerator](https://docs.carbon.io/en/master/packages/carbond/docs/ref/carbond.ObjectIdGenerator.html) which will automatically generate and append an [ObjectId](https://docs.mongodb.com/manual/reference/method/ObjectId/) string whenever our Service inserts into the database.
+Collections also allow you to define a schema. This is not a database schema, but rather the schema that the Service will validate against whenever data is sent to or from the Endpoint. The default Carbon.io schema for resources requires an `_id` field, which is also the default id field for MongoDB. Instead of generating our own ids, we'll use the built-in Carbon.io [ObjectIdGenerator](https://docs.carbon.io/en/master/packages/carbond/docs/ref/carbond.ObjectIdGenerator.html) which will automatically generate and append an [ObjectId](https://docs.mongodb.com/manual/reference/method/ObjectId/) string whenever our Service inserts into the database.
 
 ### Operation configuration
 
