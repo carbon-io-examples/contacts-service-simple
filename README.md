@@ -30,11 +30,11 @@ This example is Part 1 in a four-part series. You can find the subsequent series
 
 We will create a RESTful API that allows for basic CRUD operations on a contact list. The API will support two [Endpoints](https://docs.carbon.io/en/latest/packages/carbond/docs/guide/endpoints.html) (or URIs) with the following HTTP [Operations](https://docs.carbon.io/en/latest/packages/carbond/docs/guide/operations.html):
 
-**/contacts**
+`/contacts`
 * GET - get all contacts
 * POST - create a new contact
 
-**/contacts/:contact**
+`/contacts/:contact`
 * GET - get one contact by ID
 * PUT - update a contact by ID
 * DELETE - delete a contact by ID
@@ -321,12 +321,12 @@ Which results in the following tree of Endpoints and Operations:
 
 Recall that our Contacts Service will support the following Endpoints with the following Operations:
 
-**/contacts**
+`/contacts`
 
 * GET - get all contacts
 * POST - create a new contact
 
-**/contacts/:contact**
+`/contacts/:contact`
 
 * GET - get one contact by ID
 * PUT - update a contact by ID
