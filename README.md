@@ -4,14 +4,12 @@
 
 This example walks you through the process of creating a simple RESTful API with Carbon.io. Developers new to Carbon.io should start here as we will introduce different Carbon.io concepts along the way.
 
-This example is Part 1 in a four-part series. You can find the subsequent series parts in the table below:
+This example is Part 1 in a two-part series.
 
 | Series Parts |
 |---|
 | __Part 1:__ __Building a REST API with Carbon.io__ |
 | __Part 2:__ [Building a React App with a Carbon.io API](https://github.com/carbon-io-examples/react-contacts-simple) |
-| __Part 3:__ Securing Carbon.io APIs (Coming Soon) |
-| __Part 4:__ User Login and Routing with React (Coming Soon) |
 
 ## Table of Contents
 
@@ -600,32 +598,28 @@ See the [Carbon.io documentation](https://docs.carbon.io/en/master/packages/carb
 Carbon.io Services are also capable of generating their own documentation. There are currently two flavors users can choose from: Github Flavored Markdown and static HTML with aglio. For this example we are going to use [aglio](https://github.com/danielgtaylor/aglio). Note: the installation may take a couple of minutes.
 
 ```sh
-npm install aglio --no-optional
+$ npm install aglio --no-optional
 ```
 
 Once aglio is installed, you can generate the docs with the following command:
 
 ```sh
-node lib/ContactService gen-static-docs --flavor aglio --out docs/index.html
+$ node lib/ContactService gen-static-docs --flavor aglio --out docs/index.html
 ```
 
-You can view the docs in the generated [docs/index.html file](http://htmlpreview.github.io/?https://raw.githubusercontent.com/carbon-io-examples/contacts-service-simple/master/docs/index.html).
+You can view the docs by opening the locally generated `docs/index.html` file in your browser.
+
+For reference, you can view the docs for this tutorial via our generated [docs/index.html file](http://htmlpreview.github.io/?https://raw.githubusercontent.com/carbon-io-examples/contacts-service-simple/master/docs/index.html).
 
 ## Recap
 
 Congrats! You've created a simple Carbon.io Service. We'll do a quick recap to cover all the work you've done:
 
 * Created a Contact Service consisting of the "/contacts" Endpoint and "/contact/:contact" sub-endpoint
-* Learned about core infrastructure components:
-  * Fibers - coroutine library that enables synchronous coding in an asynchronous environment
-  * Atom - universal object factory used to instantiate objects and to create components- objects bound in the Node.js module namespace via module.exports
-  * Bond - universal name resolver
-* Implemented HTTP Operations for both Endpoints using Leafnode - a synchronous MongoDB driver that wraps the Node Native driver.
 * Created a test suite using Test Tube
 * Generated static HTML documentation using aglio
 
 ## Next steps
 
-If you're looking for a next step in furthering your knowledge on Carbon.io, check out our examples: https://docs.carbon.io/en/master/examples.html.
-
-If you'd like to learn how to create a React front-end for the Contacts Service, check out Part 2 of our blog series: https://github.com/carbon-io-examples/react-contacts-simple.
+* Learn how to create a React front-end for the Contacts Service: https://github.com/carbon-io-examples/react-contacts-simple.
+* Further your knowledge on Carbon.io with our examples page: https://docs.carbon.io/en/master/examples.html.
