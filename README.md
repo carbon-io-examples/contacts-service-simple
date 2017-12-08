@@ -568,11 +568,11 @@ __(function() {
 
 The [ServiceTest](https://docs.carbon.io/en/master/packages/carbond/docs/ref/carbond.test.ServiceTest.html) class is an extension of [Test Tube](https://docs.carbon.io/en/master/packages/carbon-core/docs/packages/test-tube/docs/guide/index.html)’s `HttpTest` class that you can use to write declarative HTTP-based unit tests.
 
-Each test consists of a request (reqSpec) and response (resSpec) spec. The reqSpec has only one required property `method`, which should be an HTTP verb (e.g. GET, PUT, POST, etc.). You may optionally specify: query parameters with the `parameters` property, headers with the `headers` property, and a body with the `body` property.
+Each test consists of a request (`reqSpec`) and response (`resSpec`) spec. The `reqSpec` has only one required property `method`, which should be an HTTP verb (e.g. GET, PUT, POST, etc.). You may optionally specify: query parameters with the `parameters` property, headers with the `headers` property, and a body with the `body` property.
 
 A `resSpec` can be an `Object`, `Function`, or an `Object` whose properties are `Functions`. It can be configured to either expect a `statusCode` or compare the value of each property for a returned `Object`.
 
-One neat Test Tube feature to highlight is the `httpHistory` property - it records all previously executed request/response pairs for a HttpTest. In some of our tests above we use the httpHistory getRes() method to retrieve a previous response and use it to create a new test request.
+One neat Test Tube feature to highlight is the `httpHistory` property - it records all previously executed request/response pairs for a HttpTest. In some of our tests above we use the `httpHistory` `getRes()` method to retrieve a previous response and use it to create a new test request.
 
 To run the test:
 
@@ -592,6 +592,8 @@ Test Report
   [*] Test: DELETE /contacts/:_id (35ms)
   [*] Test: DELETE /contacts/:_id (19ms)
 ```
+
+See the [Carbon.io documentation](https://docs.carbon.io/en/master/packages/carbon-core/docs/packages/test-tube/docs/guide/index.html) for more information on Test-tube.
 
 ## Generate documentation
 
