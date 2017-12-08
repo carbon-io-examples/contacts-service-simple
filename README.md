@@ -352,7 +352,7 @@ You can configure each operation using the config property for that operation (e
 
 For the `find` operation we have configured a `preFind` hook, which has the following signature:
 
-`pre<OPERATION NAME>Operation(config, req, res)`
+`pre<OPERATION NAME>(<REQUIRED OPERATION PARAMETERS>, options)`
 
 In this case, the pre operation hook changes the behavior of the Collection `find` operation to query for first name, last name, or email. The hook builds the `options` parameter based on the incoming request and config for the operation (in this case the find config). As such, the return value for this method should be the initialized `operations` parameter that will be passed on to the handler. See more about [operation hooks](https://docs.carbon.io/en/latest/packages/carbond/docs/guide/collections.html) in the documentation.
 
