@@ -306,12 +306,12 @@ To help us implement the Endpoints we will use the Carbon.io [MongoDBCollection]
 
 Which results in the following tree of Endpoints and Operations:
 
-* /<collection>
+* `/<collection>`
   * POST which maps to insert
   * GET which maps to find
   * PATCH which maps to update
   * DELETE which maps to remove
-* /<collection>/:_id
+* `/<collection>/:_id`
   * PUT which maps to saveObject
   * GET which maps to findObject
   * PATCH which maps to updateObject
