@@ -361,15 +361,23 @@ In this case, the pre operation hook changes the behavior of the Collection `fin
 Now that our example is complete, we can run the Contacts Service and see it in action. To run the example:
 
 ```sh
-node lib/ContactService.js
+$ node lib/ContactService.js
+
+[2017-12-08T18:18:46.353Z] carbon-io.carbond.Service:INFO: Service starting...
+[2017-12-08T18:18:46.370Z] carbon-io.carbond.Service:INFO: Service creating http server
+[2017-12-08T18:18:46.406Z] carbon-io.carbond.Service:INFO: Service initializing connection to db: mongodb://xxx:yyy@localhost:27017/contacts
+[2017-12-08T18:18:46.452Z] carbon-io.carbond.Service:INFO: Service listening on port 9900 (mode: "production")
+[2017-12-08T18:18:46.452Z] carbon-io.carbond.Service:INFO: Service started
 ```
 
 Some example commands:
 
 ```sh
-curl localhost:9900/contacts -H "Content-Type: application/json" -d '{"firstName": "Alan", "lastName": "Turing"}'
+$ curl localhost:9900/contacts -H "Content-Type: application/json" -d '{"firstName": "Alan", "lastName": "Turing"}'
+{"firstName":"Alan","lastName":"Turing","_id":"5a2ad78903126539aab82d26"}
 
-curl localhost:9900/contacts
+$ curl localhost:9900/contacts
+[{"_id":"5a2ad78903126539aab82d26","firstName":"Alan","lastName":"Turing"}]
 ```
 
 ## Create tests for the Contacts Service
