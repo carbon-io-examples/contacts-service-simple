@@ -18,7 +18,7 @@ This example is Part 1 in a four-part series. You can find the subsequent series
 - [Introduction](#introduction)
 - [Prerequisites](#prerequisites)
 - [Project structure and setup](#project-structure-and-setup)
-- [Create the Contact Service (REST API)](#create-the-contacts-service)
+- [Create the Contact Service (REST API)](#create-the-contacts-service-rest-api)
 - [Define the Contacts Endpoint](#define-the-contacts-endpoint)
 - [Run the Contacts Service](#run-the-contacts-service)
 - [Create tests for the Contacts Service](#create-tests-for-the-contacts-service)
