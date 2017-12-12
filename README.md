@@ -168,7 +168,7 @@ With our Service set up, we'll now define the `/contacts` Endpoint and `/contact
 Create the `lib/ContactsEndpoint.js` file and copy the code:
 
 ```sh
-curl https://raw.githubusercontent.com/carbon-io-examples/contact-service-simple/master/lib/ContactsEndpoint.js > lib/ContactsEndpoint.js
+$ curl https://raw.githubusercontent.com/carbon-io-examples/contact-service-simple/master/lib/ContactsEndpoint.js > lib/ContactsEndpoint.js
 ```
 
 ```javascript
@@ -363,15 +363,17 @@ We use this hook to update or transform any parameters to be passed to the opera
 Now that our example is complete, we can run the Contacts Service and see it in action. To run the example:
 
 ```sh
-node lib/ContactService.js
+$ node lib/ContactService.js
 ```
 
 Some example commands:
 
 ```sh
-curl localhost:9900/contacts -H "Content-Type: application/json" -d '{"firstName": "Alan", "lastName": "Turing"}'
+$ curl localhost:9900/contacts -H "Content-Type: application/json" -d '{"firstName": "Alan", "lastName": "Turing"}'
+{"firstName":"Alan","lastName":"Turing","_id":"5a2f25417bb4cd0c0b260de8"}
 
-curl localhost:9900/contacts
+$ curl localhost:9900/contacts
+[{"_id":"5a2f25417bb4cd0c0b260de8","firstName":"Alan","lastName":"Turing"}]
 ```
 
 ## Create tests for the Contacts Service
@@ -380,7 +382,7 @@ Carbon.io comes with a testing framework called [Test-Tube](https://github.com/c
 Create the `test/ContactServiceTest.js` file and copy the code:
 
 ```sh
-curl https://raw.githubusercontent.com/carbon-io-guides/example__simple-rest-service/master/test/ContactServiceTest.js > test/ContactServiceTest.js
+$ curl https://raw.githubusercontent.com/carbon-io-guides/example__simple-rest-service/master/test/ContactServiceTest.js > test/ContactServiceTest.js
 ```
 
 ```javascript
@@ -579,7 +581,7 @@ One neat Test Tube feature to highlight is the `httpHistory` property - it recor
 To run the test:
 
 ```sh
-node lib/ContactServiceTest.js
+$ node lib/ContactServiceTest.js
 ```
 
 We'll receive the following test report:
