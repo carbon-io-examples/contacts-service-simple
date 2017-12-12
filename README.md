@@ -338,9 +338,13 @@ So, we will specify the MongoDBCollection operations we want to support under th
 * `saveObject`
 * `removeObject`
 
-### Schema and id
+### Schema
 
-Collections also allow you to define a schema. This is not a database schema, but rather the schema that the Service will validate against whenever data is sent to or from the Endpoint. The default Carbon.io schema for resources requires an `_id` field, which is also the default id field for MongoDB. Instead of generating our own ids, we'll use the built-in Carbon.io [ObjectIdGenerator](https://docs.carbon.io/en/master/packages/carbond/docs/ref/carbond.ObjectIdGenerator.html) which will automatically generate and append an [ObjectId](https://docs.mongodb.com/manual/reference/method/ObjectId/) string whenever our Service inserts into the database.
+Collections also allow you to define a schema. This is not a database schema, but rather the schema that the Service will validate against whenever data is sent to or from the Endpoint.
+
+### ObjectIdGenerator
+
+The default Carbon.io schema for resources requires an `_id` field, which is also the default id field for MongoDB. Instead of generating our own ids, we'll use the built-in Carbon.io [ObjectIdGenerator](https://docs.carbon.io/en/master/packages/carbond/docs/ref/carbond.ObjectIdGenerator.html) which will automatically generate and append an [ObjectId](https://docs.mongodb.com/manual/reference/method/ObjectId/) string whenever our Service inserts into the database.
 
 ### Operation configuration
 
@@ -350,9 +354,9 @@ You can configure each operation using the config property for that operation (e
 
 For the `find` operation we have configured a `preFind` hook, which has the following signature:
 
-`pre<OPERATION NAME>Operation(config, req, res)`
+`preFind(options)`
 
-In this case, the pre operation hook changes the behavior of the Collection `find` operation to query for first name, last name, or email. The hook builds the `options` parameter based on the incoming request and config for the operation (in this case the find config). As such, the return value for this method should be the initialized `operations` parameter that will be passed on to the handler. See more about [operation hooks](https://docs.carbon.io/en/latest/packages/carbond/docs/guide/collections.html) in the documentation.
+We use this hook to update or transform any parameters to be passed to the operation handler. In this case, we allow users to search for a contact via first or last name, or email. See more about [operation hooks](https://docs.carbon.io/en/latest/packages/carbond/docs/guide/collections.html) in the documentation.
 
 ## Run the Contacts Service
 
