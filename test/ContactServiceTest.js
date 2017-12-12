@@ -106,7 +106,7 @@ __(function() {
         name: "GET /contacts/:_id",
         reqSpec: function(context) {
           return {
-            url: context.httpHistory.getRes(-2).headers.location,
+            url: context.httpHistory.getRes('POST /contacts').headers.location,
             method: "GET"
           }
         },
@@ -126,10 +126,10 @@ __(function() {
         name: "PUT /contacts/:_id",
         reqSpec: function(context) {
           return {
-            url: context.httpHistory.getRes(-3).headers.location,
+            url: context.httpHistory.getRes('POST /contacts').headers.location,
             method: "PUT",
             body: {
-              _id: context.httpHistory.getRes(-1).body._id,
+              _id: context.httpHistory.getRes('GET /contacts/:_id').body._id,
               firstName: "Mary",
               lastName: "Smith",
               email: "mary.smith@gmail.com", // We are changing email
@@ -151,7 +151,7 @@ __(function() {
         name: "DELETE /contacts/:_id",
         reqSpec: function(context) {
           return {
-            url: context.httpHistory.getRes(-4).headers.location,
+            url: context.httpHistory.getRes('POST /contacts').headers.location,
             method: "DELETE"
           }
         },
@@ -169,7 +169,7 @@ __(function() {
         name: "DELETE /contacts/:_id",
         reqSpec: function(context) {
           return {
-            url: context.httpHistory.getRes(-5).headers.location,
+            url: context.httpHistory.getRes('POST /contacts').headers.location,
             method: "DELETE"
           }
         },
