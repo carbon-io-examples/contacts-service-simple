@@ -10,8 +10,5 @@
   "license": "ISC",
   "dependencies": {
     "carbon-io": "^0.6.2"
-  },
-  "devDependencies": {
-    "aglio": "^2.3.0"
   }
 }
