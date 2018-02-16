@@ -168,7 +168,7 @@ With our Service set up, we'll now define the `/contacts` Endpoint and `/contact
 Create the `lib/ContactsEndpoint.js` file and copy the code:
 
 ```sh
-$ curl https://raw.githubusercontent.com/carbon-io-examples/contact-service-simple/master/lib/ContactsEndpoint.js > lib/ContactsEndpoint.js
+$ curl https://raw.githubusercontent.com/carbon-io-examples/contacts-service-simple/master/lib/ContactsEndpoint.js > lib/ContactsEndpoint.js
 ```
 
 ```javascript
