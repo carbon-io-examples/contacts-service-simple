@@ -82,7 +82,7 @@ $ curl https://raw.githubusercontent.com/carbon-io-examples/contacts-service-sim
 const carbon = require('carbon-io')
 const __  = carbon.fibers.__(module)
 const _o  = carbon.bond._o(module)
-const o   = carbon.atom.o(module).main // Note the .main here since this is the main application 
+const o   = carbon.atom.o(module).main // Note the .main here since this is the main application
 
 __(function() {
   module.exports = o({
@@ -147,7 +147,7 @@ Carbon.io is built on several core infrastructure components, three of which are
 
 ### Environment variables
 
-A list of process environment variables that the Contacts Service supports. We configure one variable `DB_URI`, which contains the value of our [MongoDB connection string URI](https://docs.mongodb.com/manual/reference/connection-string/). 
+A list of process environment variables that the Contacts Service supports. We configure one variable `DB_URI`, which contains the value of our [MongoDB connection string URI](https://docs.mongodb.com/manual/reference/connection-string/).
 
 ### Port
 
@@ -289,7 +289,7 @@ module.exports = o({
 })
 ```
 
-### MongoDBCollection 
+### MongoDBCollection
 
 To help us implement the Endpoints we will use the Carbon.io [MongoDBCollection](https://docs.carbon.io/en/master/packages/carbond/docs/guide/collections.html#mongodbcollection) class, which extends the Collection class. Both classes provide a high-level abstraction for defining Endpoints that behave like a RESTful collection of resources. When you define a Collection you may define the following methods:
 
